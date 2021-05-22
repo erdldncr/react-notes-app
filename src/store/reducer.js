@@ -13,6 +13,13 @@ export const reducer=(state,action)=>{
                     date:new Date().toLocaleDateString()
                 }
             ]
+        case 'DELETE':
+            return state.filter(note=>note.id!==action.payload) 
+            
+        case 'SEARCH':           
+         let tempState=state.filter(note=>note.text.toLowerCase().includes(action.payload)) 
+         
+            return  tempState  
         default:
             return state
     }

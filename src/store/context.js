@@ -16,8 +16,14 @@ const AppContextProvider=({children})=>{
     const addNote=(text)=>{
         dispatch({type:'ADD',payload:{text}})
     }
-        console.log(state)
-    return<AppContext.Provider value={{state,addNote}}>
+  
+   const deleteNote=(id)=>{
+    dispatch({type:'DELETE',payload:id})
+   }
+   const search=(text)=>{
+       dispatch({type:'SEARCH',payload:text})
+   }
+    return<AppContext.Provider value={{state,addNote,deleteNote,search}}>
             {children}
         </AppContext.Provider>
     

@@ -4,8 +4,10 @@ export default function AddNote() {
     const [text,setText]=useState('')
     const {addNote} =useGlobalContext()
     const addToNoteList=()=>{
+       if(text.trim().length>0){
         addNote(text)
         setText('')
+       }
     }
     return (
         <div className='note new'>
