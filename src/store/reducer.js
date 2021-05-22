@@ -10,7 +10,7 @@ export const reducer=(state,action)=>{
                 {
                     id:new Date().getTime(),
                     text:action.payload.text,
-                    date:'10/20/30'
+                    date:new Date().toLocaleDateString()
                 }
             ]
         default:

@@ -1,28 +1,17 @@
 
-import { useContext, useReducer,createContext } from "react"
+import { useContext, useReducer,createContext, useEffect } from "react"
 import {reducer} from './reducer'
-const defaultState=[
-    {
-        id:new Date().getTime(),
-        text:"first note",
-        date:'12/24/2020'
-    },
-    {
-        id:new Date().getTime(),
-        text:"third note",
-        date:'12/24/2020'
-    },
-    {
-        id:new Date().getTime(),
-        text:"second note",
-        date:'12/24/2020'
-    }
-]
+let defaultState= JSON.parse(localStorage.getItem('notes'))?? []
 
 const AppContext=createContext()
 
 const AppContextProvider=({children})=>{
     const [state,dispatch]=useReducer(reducer,defaultState)
+
+    useEffect(()=>{
+    localStorage.setItem('notes',JSON.stringify(state))
+
+    },[state])
 
     const addNote=(text)=>{
         dispatch({type:'ADD',payload:{text}})
